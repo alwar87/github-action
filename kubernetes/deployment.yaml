@@ -1,19 +1,19 @@
-CopyRunapiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world-deployment
+  name: hello-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: hello-world
+      app: hello
   template:
     metadata:
       labels:
-        app: hello-world
+        app: hello
     spec:
       containers:
-      - name: nginx
-        image: alwar87/govind-nginx:latest
-        ports:
-        - containerPort: 80
+        - name: hello
+          image: REGION-docker.pkg.dev/PROJECT_ID/hello-repo/hello-app:latest
+          ports:
+            - containerPort: 80
