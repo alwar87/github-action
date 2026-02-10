@@ -1,28 +1,31 @@
+# Hello World Kubernetes Deployment on GCP
+
 ## Overview
-This project demonstrates an automated CI/CD pipeline that builds and deploys
-a containerized web application to Google Kubernetes Engine (GKE).
+This project provisions a GKE cluster on GCP, containerizes a simple "Hello, World" app, and deploys it with an automated CI/CD pipeline triggered on GitHub pushes.
 
-## Tech Stack
-- Google Kubernetes Engine (GKE)
-- Terraform (IaC)
-- Docker
-- GitHub Actions
-- GCP Artifact Registry
+## Setup Instructions
 
-## How to Run
-1. Provision infrastructure:
-   cd terraform
-   terraform init
-   terraform apply
+### Prerequisites
+- GCP account with billing enabled
+- Enable GKE, Container Registry APIs
+- Create a service account with GKE and GCR permissions, download JSON key
+- GitHub repository secrets: `GCP_PROJECT_ID`, `GCP_SA_KEY`
 
-2. Push changes to main branch
-   → GitHub Actions automatically builds & deploys
+### Infrastructure Setup
+1. Configure `variables.tf` with your GCP project and region.
+2. Initialize Terraform:
+```bash
+terraform init
+3.Apply the configuration:
+ terraform apply
 
-## Live Application
-http://<GCP_LOAD_BALANCER_IP>
-## HELM
-helm create hello-app
-helm install hello-app ./hello-app
-
-## Observability
-helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack
+### **Building & Deploying**
+Push code to main branch.
+GitHub Actions will automatically build the Docker image, push it to GCR, and deploy to GKE.
+Design Choices
+GKE provides a managed, scalable Kubernetes environment.
+Docker container optimized with Alpine base for size.
+LoadBalancer service exposes the app publicly.
+GitHub Actions automates the CI/CD pipeline for efficiency.
+### ** Live Application**
+Accessible at: [Your GCP Load Balancer URL]
