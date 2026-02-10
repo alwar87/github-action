@@ -11,21 +11,16 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_nodes" {
-  cluster   = google_container_cluster.gke.name
+  name       = "primary-node-pool"
+  cluster   = google_container_cluster.primary.name
   location  = var.region
   node_count = 2
 
   networking_mode = "VPC_NATIVE"
-# Enable HTTP Load Balancing
-  addons_config {
-    http_load_balancing {
-      disabled = false
-     }
-  }
   node_config {
     machine_type = "e2-medium"
-    oauth_scopes = {
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
-    }
+    ]
   }
 }
