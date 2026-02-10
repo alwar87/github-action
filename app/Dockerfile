@@ -1,11 +1,18 @@
-CopyRun# Use an official nginx image
-FROM nginx:alpine
+# Use a lightweight Node.js base image
+FROM node:18-alpine
 
-# Remove default nginx static files
-RUN rm -rf /usr/share/nginx/html/*
+# Create app directory
+WORKDIR /app
 
-# Copy custom static site
-COPY index.html /usr/share/nginx/html/
+# Copy package.json and install dependencies
+COPY package*.json ./
+RUN npm install --only=production
 
-# Expose port 80
-EXPOSE 80
+# Copy app source code
+COPY . .
+
+# Expose app port
+EXPOSE 3000
+
+# Start the app
+CMD ["node", "app.js"]
