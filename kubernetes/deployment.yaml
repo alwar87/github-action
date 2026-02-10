@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-app
+  name: hello-world
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: hello
+      app: hello-world
   template:
     metadata:
       labels:
-        app: hello
+        app: hello-world
     spec:
       containers:
-        - name: hello
-          image: REGION-docker.pkg.dev/PROJECT_ID/hello-repo/hello-app:latest
-          ports:
-            - containerPort: 80
+      - name: hello-world
+        image: gcr.io/<PROJECT_ID>/hello-world:latest
+        ports:
+        - containerPort: 3000
