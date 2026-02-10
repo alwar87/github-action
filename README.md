@@ -18,8 +18,9 @@ This project provisions a GKE cluster on GCP, containerizes a simple "Hello, Wor
 ```bash
 terraform init
 
-3.Apply the configuration:
- terraform apply
+3. Apply the configuration:
+```bash
+terraform apply
 
 ### **Building & Deploying**
 Push code to main branch.
