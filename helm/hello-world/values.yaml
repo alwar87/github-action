@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: gcr.io/PROJECT_ID/hello-world
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "256Mi"
+  requests:
+    cpu: "250m"
+    memory: "128Mi"
