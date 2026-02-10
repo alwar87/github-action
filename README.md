@@ -13,9 +13,11 @@ This project provisions a GKE cluster on GCP, containerizes a simple "Hello, Wor
 
 ### Infrastructure Setup
 1. Configure `variables.tf` with your GCP project and region.
+   
 2. Initialize Terraform:
 ```bash
 terraform init
+
 3.Apply the configuration:
  terraform apply
 
@@ -27,5 +29,7 @@ GKE provides a managed, scalable Kubernetes environment.
 Docker container optimized with Alpine base for size.
 LoadBalancer service exposes the app publicly.
 GitHub Actions automates the CI/CD pipeline for efficiency.
+
+
 ### ** Live Application**
 Accessible at: [Your GCP Load Balancer URL]
